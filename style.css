@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff7eb3, #1a237e);
+    color: white;
+    overflow: hidden;
+}
+
+/* ===== TEXTO ARRIBA IZQUIERDA ===== */
+#texto-container {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    max-width: 480px;
+}
+
+#texto br + span,
+#texto br {
+    display: block;
+    margin-top: 12px;
+}
+
+#texto::after {
+    content: "";
+}
+
+#texto {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4em;   /* 🔥 2 tamaños más que el contador */
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+#texto br:last-child {
+    margin-bottom: 10px;
+}
+/* ===== PLANETA ===== */
+#planeta-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#planeta {
+   width: 180px;
+    height: 180px;
+    background: radial-gradient(circle at 30% 30%, #4fc3f7, #0d47a1);
+    border-radius: 50%;
+    box-shadow: inset -20px -20px 40px rgba(0,0,0,0.4);
+    cursor: pointer;
+
+    --rot: 0deg;
+    transform: scale(1.6) rotate(var(--rot));
+    transition: transform 2.2s ease-in-out;
+}
+
+
+#planeta-giro {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: rotacion-lenta 120s linear infinite;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 40%),
+        radial-gradient(circle at 90% 65%, #2e7d32 14%, transparent 34%),
+        radial-gradient(circle at 37% 42%, #1b5e20 12%, transparent 32%),
+        radial-gradient(circle at 55% 35%, #388e3c 10%, transparent 30%),
+        radial-gradient(circle at center, #1e88e5, #0d47a1);
+}
+
+
+#planeta::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(140,200,255,0.6);
+}
+
+#planeta-giro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 25% 30%, rgba(255,255,255,0.35), transparent 40%),
+        radial-gradient(circle at 70% 45%, rgba(255,255,255,0.25), transparent 45%),
+        radial-gradient(circle at 50% 70%, rgba(255,255,255,0.3), transparent 50%);
+    animation: nubes 28s linear infinite;
+}
+
+@keyframes nubes {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+
+#estrellas {
+     position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(1px 1px at 20% 30%, white, transparent),
+        radial-gradient(1px 1px at 70% 80%, white, transparent),
+        radial-gradient(1px 1px at 40% 60%, white, transparent),
+        radial-gradient(1px 1px at 90% 20%, white, transparent),
+        radial-gradient(1px 1px at 55% 15%, white, transparent),
+        radial-gradient(1px 1px at 15% 75%, white, transparent),
+        radial-gradient(1px 1px at 85% 55%, white, transparent);
+    background-size: 130px 130px; /* apenas más densas */
+    opacity: 0.40;               /* antes 0.45 */
+    animation: parpadeo 4.5s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+
+.orbita {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    animation: orbitar 18s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes orbitar {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes rotacion-lenta {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes rotacion-rapida {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+
+
+.corazon {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    opacity: 0.85;
+}
+
+@keyframes parpadeo {
+    from { opacity: 0.25; }
+    to   { opacity: 0.45; }
+}
+
+/* ===== CONTADOR ABAJO IZQUIERDA ===== */
+#contador-container {
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    text-align: left;
+    opacity: 0;
+    animation: aparecer 4s ease forwards; /* +1 segundo */
+}
+#contador-titulo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+    margin-bottom: 6px;
+    opacity: 0.85;
+}
+
+#contador {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;          /* números más grandes */
+    font-weight: 400;
+}
+/* ===== APARICIÓN SUAVE ===== */
+@keyframes aparecer {
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes rotacion-lenta {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes entrada-tierra {
+    from {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
